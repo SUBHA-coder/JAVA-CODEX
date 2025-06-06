@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Trees - DSA Java Codex{% endblock %}
+{% block content %}
+<h2>Binary Trees</h2>
+<p><strong>Theory:</strong> A tree is a hierarchical data structure. A binary tree is a tree where each node has at most two children. Common operations include traversals (inorder, preorder, postorder).</p>
+<pre><code class="language-java">// Java implementation of Binary Tree Traversals
+class Node {
+    int data;
+    Node left, right;
+    Node(int item) {
+        data = item;
+        left = right = null;
+    }
+}
+class BinaryTree {
+    Node root;
+    void inorder(Node node) {
+        if (node == null) return;
+        inorder(node.left);
+        System.out.print(node.data + " ");
+        inorder(node.right);
+    }
+    void preorder(Node node) {
+        if (node == null) return;
+        System.out.print(node.data + " ");
+        preorder(node.left);
+        preorder(node.right);
+    }
+    void postorder(Node node) {
+        if (node == null) return;
+        postorder(node.left);
+        postorder(node.right);
+        System.out.print(node.data + " ");
+    }
+}
+</code></pre>
+<button onclick="askAI('Explain Binary Tree Traversals in Java')">Ask AI to Explain</button>
+<h3>Applications</h3>
+<ul>
+  <li>Hierarchical data (file systems, organization charts)</li>
+  <li>Expression parsing</li>
+</ul>
+{% endblock %}

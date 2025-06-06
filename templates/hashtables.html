@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Hash Tables - DSA Java Codex{% endblock %}
+{% block content %}
+<h2>Hash Tables</h2>
+<p><strong>Theory:</strong> Hash tables store key-value pairs for fast lookup. Java uses <code>HashMap</code> for this purpose.</p>
+<pre><code class="language-java">// Java HashMap Example
+import java.util.*;
+class HashTableDemo {
+    public static void main(String[] args) {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("apple", 10);
+        map.put("banana", 20);
+        map.put("orange", 30);
+        System.out.println(map.get("banana")); // 20
+    }
+}
+</code></pre>
+<button onclick="askAI('Explain HashMap usage in Java')">Ask AI to Explain</button>
+<h3>Applications</h3>
+<ul>
+  <li>Database indexing</li>
+  <li>Caching</li>
+</ul>
+{% endblock %}

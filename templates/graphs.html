@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Graphs - DSA Java Codex{% endblock %}
+{% block content %}
+<h2>Graphs</h2>
+<p><strong>Theory:</strong> A graph is a set of nodes (vertices) connected by edges. Can be directed/undirected, weighted/unweighted. Used for modeling networks.</p>
+<pre><code class="language-java">// Java implementation of Graph (Adjacency List)
+import java.util.*;
+class Graph {
+    private int V;
+    private LinkedList<Integer> adj[];
+    Graph(int v) {
+        V = v;
+        adj = new LinkedList[v];
+        for (int i = 0; i < v; ++i)
+            adj[i] = new LinkedList<>();
+    }
+    void addEdge(int v, int w) { adj[v].add(w); }
+    void printGraph() {
+        for (int v = 0; v < V; v++) {
+            System.out.print("Vertex " + v + ":");
+            for (Integer n : adj[v]) System.out.print(" -> " + n);
+            System.out.println();
+        }
+    }
+}
+</code></pre>
+<button onclick="askAI('Explain Graph Representation in Java')">Ask AI to Explain</button>
+<h3>Applications</h3>
+<ul>
+  <li>Social networks</li>
+  <li>Navigation systems</li>
+</ul>
+{% endblock %}

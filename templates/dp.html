@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Dynamic Programming - DSA Java Codex{% endblock %}
+{% block content %}
+<h2>Fibonacci (DP)</h2>
+<p><strong>Theory:</strong> Dynamic Programming solves problems by breaking them into subproblems and storing the results. Example: Fibonacci sequence.</p>
+<pre><code class="language-java">// Java DP Fibonacci
+class Fibonacci {
+    int fib(int n) {
+        int f[] = new int[n+2];
+        f[0] = 0;
+        f[1] = 1;
+        for (int i = 2; i <= n; i++)
+            f[i] = f[i-1] + f[i-2];
+        return f[n];
+    }
+}
+</code></pre>
+<button onclick="askAI('Explain DP Fibonacci in Java')">Ask AI to Explain</button>
+<h2>0/1 Knapsack</h2>
+<p><strong>Theory:</strong> The 0/1 Knapsack problem is a classic DP problem. Given weights and values, maximize value without exceeding capacity.</p>
+<pre><code class="language-java">// Java 0/1 Knapsack DP
+class Knapsack {
+    int knapSack(int W, int wt[], int val[], int n) {
+        int K[][] = new int[n+1][W+1];
+        for (int i = 0; i <= n; i++) {
+            for (int w = 0; w <= W; w++) {
+                if (i==0 || w==0)
+                    K[i][w] = 0;
+                else if (wt[i-1] <= w)
+                    K[i][w] = Math.max(val[i-1] + K[i-1][w-wt[i-1]], K[i-1][w]);
+                else
+                    K[i][w] = K[i-1][w];
+            }
+        }
+        return K[n][W];
+    }
+}
+</code></pre>
+<button onclick="askAI('Explain 0/1 Knapsack DP in Java')">Ask AI to Explain</button>
+{% endblock %}

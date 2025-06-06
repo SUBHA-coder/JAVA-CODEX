@@ -7,21 +7,20 @@
     <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
 </head>
 <body>
-    <header>
-        <h1>DSA Java Codex</h1>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/chapter/arrays">Arrays</a>
-            <a href="/chapter/linkedlists">Linked Lists</a>
-            <a href="/chapter/stacks">Stacks</a>
-        </nav>
-    </header>
-    
-    <main class="book-section">
-        {% block content %}
-        {% endblock %}
-    </main>
-
-    <script src="{{ url_for('static', path='/script.js') }}"></script>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/arrays">Arrays</a>
+        <a href="/linkedlists">Linked Lists</a>
+        <a href="/stacks">Stacks</a>
+        <a href="/bfs_dfs">BFS & DFS</a>
+        <a href="/trees">Trees</a>
+        <a href="/graphs">Graphs</a>
+        <a href="/hashtables">Hash Tables</a>
+        <a href="/sorting">Sorting</a>
+        <a href="/dp">Dynamic Programming</a>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
 </body>
 </html>

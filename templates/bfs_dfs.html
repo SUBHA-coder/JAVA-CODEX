@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}BFS & DFS - DSA Java Codex{% endblock %}
+{% block content %}
+<h2>Breadth-First Search (BFS)</h2>
+<p><strong>Theory:</strong> BFS is a graph traversal algorithm that explores all neighbors at the current depth before moving to the next level. It uses a queue and is ideal for finding the shortest path in unweighted graphs.</p>
+<pre><code class="language-java">// Java implementation of BFS
+import java.util.*;
+class Graph {
+    private int V;
+    private LinkedList<Integer> adj[];
+    Graph(int v) {
+        V = v;
+        adj = new LinkedList[v];
+        for (int i = 0; i < v; ++i)
+            adj[i] = new LinkedList<>();
+    }
+    void addEdge(int v, int w) { adj[v].add(w); }
+    void BFS(int s) {
+        boolean visited[] = new boolean[V];
+        LinkedList<Integer> queue = new LinkedList<>();
+        visited[s] = true;
+        queue.add(s);
+        while (queue.size() != 0) {
+            s = queue.poll();
+            System.out.print(s + " ");
+            for (int n : adj[s]) {
+                if (!visited[n]) {
+                    visited[n] = true;
+                    queue.add(n);
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<button onclick="askAI('Explain BFS Java code')">Ask AI to Explain</button>
+
+<h2>Depth-First Search (DFS)</h2>
+<p><strong>Theory:</strong> DFS is a graph traversal algorithm that explores as far as possible along each branch before backtracking. It uses recursion or a stack and is useful for topological sorting, cycle detection, and pathfinding.</p>
+<pre><code class="language-java">// Java implementation of DFS
+import java.util.*;
+class Graph {
+    private int V;
+    private LinkedList<Integer> adj[];
+    Graph(int v) {
+        V = v;
+        adj = new LinkedList[v];
+        for (int i = 0; i < v; ++i)
+            adj[i] = new LinkedList<>();
+    }
+    void addEdge(int v, int w) { adj[v].add(w); }
+    void DFSUtil(int v, boolean visited[]) {
+        visited[v] = true;
+        System.out.print(v + " ");
+        for (int n : adj[v]) {
+            if (!visited[n])
+                DFSUtil(n, visited);
+        }
+    }
+    void DFS(int v) {
+        boolean visited[] = new boolean[V];
+        DFSUtil(v, visited);
+    }
+}
+</code></pre>
+<button onclick="askAI('Explain DFS Java code')">Ask AI to Explain</button>
+
+<h3>Real-World Applications</h3>
+<ul>
+  <li>BFS: Shortest path in unweighted graphs (e.g., social networks, web crawlers)</li>
+  <li>DFS: Topological sorting, cycle detection, maze solving</li>
+</ul>
+{% endblock %}
