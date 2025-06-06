@@ -1,9 +1,10 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
+import asyncio
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from ai.gemini_client import ask_gemini  # Gemini model handler
+from ai.groq_client import ask_gemini  # Gemini model handler
 
 app = FastAPI()
 
