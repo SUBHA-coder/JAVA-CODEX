@@ -1,0 +1,5 @@
+google-genai
+jinja2
+uvicorn
+httpx
+python-dotenv

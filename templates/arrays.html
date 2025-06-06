@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="chapter-content">
+    <h2>Arrays in Java</h2>
+    <p>Arrays are fundamental data structures that store elements of the same type in contiguous memory locations. They provide constant-time access to elements using indices.</p>
+    
+    <div class="code-section">
+        <h3>Example: Basic Array Operations</h3>
+        <pre><code id="array-code">
+public class ArrayDemo {
+    public static void main(String[] args) {
+        int[] arr = {10, 20, 30, 40};
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
+    }
+}
+        </code></pre>
+        <button onclick="askAI('array-code', 'array-explanation')">🧠 Ask AI to Explain</button>
+        <div id="array-explanation" class="ai-explanation"></div>
+    </div>
+</div>
+{% endblock %}

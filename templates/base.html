@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DSA Java Codex{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>DSA Java Codex</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/chapter/arrays">Arrays</a>
+            <a href="/chapter/linkedlists">Linked Lists</a>
+            <a href="/chapter/stacks">Stacks</a>
+        </nav>
+    </header>
+    
+    <main class="book-section">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <script src="{{ url_for('static', path='/script.js') }}"></script>
+</body>
+</html>

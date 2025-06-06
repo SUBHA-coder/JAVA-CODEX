@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="chapter-content">
+    <h2>Stacks in Java</h2>
+    
+    <div class="theory-section">
+        <h3>Understanding Stacks</h3>
+        <p>A stack is a linear data structure that follows the Last-In-First-Out (LIFO) principle. Think of it like a stack of books - you can only add or remove books from the top.</p>
+        
+        <h4>Key Operations:</h4>
+        <ul>
+            <li><strong>Push</strong> - Add an element to the top</li>
+            <li><strong>Pop</strong> - Remove the top element</li>
+            <li><strong>Peek</strong> - View the top element without removing it</li>
+            <li><strong>isEmpty</strong> - Check if stack is empty</li>
+        </ul>
+    </div>
+
+    <div class="code-section">
+        <h3>Implementation: Array-based Stack</h3>
+        <pre><code id="stack-code">
+public class Stack {
+    private int maxSize;
+    private int[] stackArray;
+    private int top;
+    
+    // Constructor
+    public Stack(int size) {
+        maxSize = size;
+        stackArray = new int[maxSize];
+        top = -1;
+    }
+    
+    // Push operation
+    public void push(int value) {
+        if (top < maxSize - 1) {
+            stackArray[++top] = value;
+            System.out.println(value + " pushed to stack");
+        } else {
+            System.out.println("Stack is full!");
+        }
+    }
+    
+    // Pop operation
+    public int pop() {
+        if (top >= 0) {
+            int value = stackArray[top--];
+            System.out.println(value + " popped from stack");
+            return value;
+        } else {
+            System.out.println("Stack is empty!");
+            return -1;
+        }
+    }
+    
+    // Peek operation
+    public int peek() {
+        if (top >= 0) {
+            return stackArray[top];
+        } else {
+            System.out.println("Stack is empty!");
+            return -1;
+        }
+    }
+    
+    // Check if stack is empty
+    public boolean isEmpty() {
+        return (top == -1);
+    }
+    
+    // Check if stack is full
+    public boolean isFull() {
+        return (top == maxSize - 1);
+    }
+}
+        </code></pre>
+        <button onclick="askAI('stack-code', 'stack-explanation')">🧠 Ask AI to Explain</button>
+        <div id="stack-explanation" class="ai-explanation"></div>
+    </div>
+
+    <div class="example-section">
+        <h3>Usage Example</h3>
+        <pre><code id="stack-example">
+public class Main {
+    public static void main(String[] args) {
+        Stack stack = new Stack(3);
+        
+        // Push elements
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        
+        // Try to push when stack is full
+        stack.push(40); // Will show "Stack is full!"
+        
+        System.out.println("Top element: " + stack.peek());
+        
+        // Pop elements
+        stack.pop();
+        stack.pop();
+        stack.pop();
+        
+        // Try to pop when stack is empty
+        stack.pop(); // Will show "Stack is empty!"
+    }
+}
+        </code></pre>
+        <button onclick="askAI('stack-example', 'stack-example-explanation')">🧠 Ask AI to Explain</button>
+        <div id="stack-example-explanation" class="ai-explanation"></div>
+    </div>
+
+    <div class="applications-section">
+        <h3>Real-world Applications</h3>
+        <ul>
+            <li>Undo/Redo operations in text editors</li>
+            <li>Browser history (back/forward)</li>
+            <li>Function call management in programming languages</li>
+            <li>Expression evaluation in calculators</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
