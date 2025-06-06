@@ -17,6 +17,10 @@ header {
 
 nav {
     margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 nav a {
@@ -84,4 +88,25 @@ button:hover {
     background-color: #f0f0e8;
     border-left: 4px solid #d4af37;
     border-radius: 0 4px 4px 0;
+}
+
+.chapters-overview ul li a:hover {
+    text-decoration: underline;
+    color: #2c1810;
+    background: #d4af37;
+    border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    .book-section {
+        padding: 1rem;
+        margin: 1rem;
+    }
+    pre {
+        font-size: 0.9rem;
+    }
 }

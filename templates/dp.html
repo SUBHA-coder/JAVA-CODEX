@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Dynamic Programming - DSA Java Codex{% endblock %}
 {% block content %}
+
 <h2>Fibonacci (DP)</h2>
-<p><strong>Theory:</strong> Dynamic Programming solves problems by breaking them into subproblems and storing the results. Example: Fibonacci sequence.</p>
-<pre><code class="language-java">// Java DP Fibonacci
+<p><strong>Theory:</strong> Dynamic Programming solves problems by breaking them into overlapping subproblems and storing results.</p>
+<pre><code class="language-java">
+// Java DP Fibonacci
 class Fibonacci {
     int fib(int n) {
         int f[] = new int[n+2];
@@ -16,9 +18,11 @@ class Fibonacci {
 }
 </code></pre>
 <button onclick="askAI('Explain DP Fibonacci in Java')">Ask AI to Explain</button>
+
 <h2>0/1 Knapsack</h2>
-<p><strong>Theory:</strong> The 0/1 Knapsack problem is a classic DP problem. Given weights and values, maximize value without exceeding capacity.</p>
-<pre><code class="language-java">// Java 0/1 Knapsack DP
+<p><strong>Theory:</strong> Select items to maximize value within weight limit. Either take or leave each item.</p>
+<pre><code class="language-java">
+// Java 0/1 Knapsack DP
 class Knapsack {
     int knapSack(int W, int wt[], int val[], int n) {
         int K[][] = new int[n+1][W+1];
@@ -37,4 +41,104 @@ class Knapsack {
 }
 </code></pre>
 <button onclick="askAI('Explain 0/1 Knapsack DP in Java')">Ask AI to Explain</button>
+
+<h2>Longest Common Subsequence (LCS)</h2>
+<p><strong>Theory:</strong> Find the length of the longest subsequence common to two strings.</p>
+<pre><code class="language-java">
+// Java LCS DP
+class LCS {
+    int lcs(String X, String Y, int m, int n) {
+        int L[][] = new int[m+1][n+1];
+        for (int i = 0; i <= m; i++) {
+            for (int j = 0; j <= n; j++) {
+                if (i == 0 || j == 0)
+                    L[i][j] = 0;
+                else if (X.charAt(i-1) == Y.charAt(j-1))
+                    L[i][j] = L[i-1][j-1] + 1;
+                else
+                    L[i][j] = Math.max(L[i-1][j], L[i][j-1]);
+            }
+        }
+        return L[m][n];
+    }
+}
+</code></pre>
+<button onclick="askAI('Explain LCS Dynamic Programming in Java')">Ask AI to Explain</button>
+
+<h2>Longest Increasing Subsequence (LIS)</h2>
+<p><strong>Theory:</strong> Find the longest subsequence such that all elements are sorted in increasing order.</p>
+<pre><code class="language-java">
+// Java LIS DP
+class LIS {
+    int lis(int arr[], int n) {
+        int lis[] = new int[n];
+        for (int i = 0; i < n; i++)
+            lis[i] = 1;
+        for (int i = 1; i < n; i++)
+            for (int j = 0; j < i; j++)
+                if (arr[i] > arr[j] && lis[i] < lis[j] + 1)
+                    lis[i] = lis[j] + 1;
+        int max = 0;
+        for (int i = 0; i < n; i++)
+            if (max < lis[i])
+                max = lis[i];
+        return max;
+    }
+}
+</code></pre>
+<button onclick="askAI('Explain Longest Increasing Subsequence DP in Java')">Ask AI to Explain</button>
+
+<h2>Edit Distance</h2>
+<p><strong>Theory:</strong> Minimum operations to convert one string to another (insert, delete, replace).</p>
+<pre><code class="language-java">
+// Java Edit Distance DP
+class EditDistance {
+    int minDistance(String word1, String word2) {
+        int m = word1.length();
+        int n = word2.length();
+        int dp[][] = new int[m+1][n+1];
+        for (int i = 0; i <= m; i++) {
+            for (int j = 0; j <= n; j++) {
+                if (i == 0)
+                    dp[i][j] = j;
+                else if (j == 0)
+                    dp[i][j] = i;
+                else if (word1.charAt(i-1) == word2.charAt(j-1))
+                    dp[i][j] = dp[i-1][j-1];
+                else
+                    dp[i][j] = 1 + Math.min(dp[i-1][j-1],
+                                    Math.min(dp[i-1][j], dp[i][j-1]));
+            }
+        }
+        return dp[m][n];
+    }
+}
+</code></pre>
+<button onclick="askAI('Explain Edit Distance DP in Java')">Ask AI to Explain</button>
+
+<h2>Subset Sum</h2>
+<p><strong>Theory:</strong> Determine if there's a subset with a given sum.</p>
+<pre><code class="language-java">
+// Java Subset Sum DP
+class SubsetSum {
+    boolean isSubsetSum(int set[], int n, int sum) {
+        boolean subset[][] = new boolean[n+1][sum+1];
+        for (int i = 0; i <= n; i++)
+            subset[i][0] = true;
+        for (int i = 1; i <= sum; i++)
+            subset[0][i] = false;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= sum; j++) {
+                if (j < set[i-1])
+                    subset[i][j] = subset[i-1][j];
+                else
+                    subset[i][j] = subset[i-1][j] || subset[i-1][j - set[i-1]];
+            }
+        }
+        return subset[n][sum];
+    }
+}
+</code></pre>
+<button onclick="askAI('Explain Subset Sum DP in Java')">Ask AI to Explain</button>
+
 {% endblock %}

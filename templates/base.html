@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
 </head>
 <body>
+    <header>
+        <h1>DSA Java Codex</h1>
+    </header>
     <nav>
         <a href="/">Home</a>
         <a href="/arrays">Arrays</a>
@@ -20,7 +23,9 @@
         <a href="/dp">Dynamic Programming</a>
     </nav>
     <div class="container">
-        {% block content %}{% endblock %}
+        <div class="book-section">
+            {% block content %}{% endblock %}
+        </div>
     </div>
 </body>
 </html>

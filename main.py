@@ -1,29 +1,25 @@
+# main.py (only AI logic part updated)
+
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 import asyncio
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from ai.groq_client import ask_gemini  # Gemini model handler
+from ai.llama_client import ask_llama  # Updated to llama client
 
 app = FastAPI()
 
-# Serve static files like CSS/JS
 app.mount("/static", StaticFiles(directory="static"), name="static")
-
-# Set template folder for HTML pages
 templates = Jinja2Templates(directory="templates")
 
-# Request model for POST requests
 class CodeRequest(BaseModel):
     code: str
 
-# Home page route
 @app.get("/")
 async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-# Dynamic chapter route (arrays, linkedlists, etc.)
 @app.get("/{chapter}")
 async def chapter(request: Request, chapter: str):
     try:
@@ -31,8 +27,7 @@ async def chapter(request: Request, chapter: str):
     except:
         return templates.TemplateResponse("404.html", {"request": request})
 
-# POST route for AI-based explanation
 @app.post("/api/explain")
 async def explain_code(code_request: CodeRequest):
-    explanation = await asyncio.to_thread(ask_gemini, f"Please explain this Java code:\n{code_request.code}")
+    explanation = await asyncio.to_thread(ask_llama, f"Please explain this Java code:\n{code_request.code}")
     return JSONResponse({"explanation": explanation})
